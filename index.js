@@ -9,7 +9,9 @@ const app = express();
 
 
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://www.ikonpixel.com'
+}));
 app.use(bodyParser.json());
 app.unsubscribe(bodyParser.urlencoded({ extended: false }));
 
