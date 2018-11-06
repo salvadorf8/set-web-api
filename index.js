@@ -1,26 +1,19 @@
 
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
-const cors = require('cors');
+require('dotenv').config();
+
+
 const app = express();
 
 
-
-
-app.use(cors({
-    origin: 'https://www.ikonpixel.com'
-}));
 app.use(bodyParser.json());
 app.unsubscribe(bodyParser.urlencoded({ extended: false }));
 
 
 app.post('/email/sendform', (req, res) => {
     console.log(req.body);
-    
-    
-    nodemailer.createTestAccount((err, account) => {
         const htmlEmail = ` 
         <h3>Construction Contact Request</h3> 
         <ul>
@@ -42,9 +35,11 @@ app.post('/email/sendform', (req, res) => {
         <p>
             CAT5: ${req.body.c1}
         </p>
+        <p>
+            Description: ${req.body.description}
+        </p>
         `
 
-        
         let transporter = nodemailer.createTransport({
             host: process.env.HOST,
             port: 587,
@@ -55,23 +50,25 @@ app.post('/email/sendform', (req, res) => {
             }
         });
     
-    
         let mailOptions = {
             from: process.env.USER, // sender address
             to: process.env.USER, // list of receivers
-            subject: 'React and Redux Technology - nodemailer test', // Subject line
+            subject: 'Construction inquiry', // Subject line
             text: req.body.message, // plain text body
             html: htmlEmail // html body
         }
 
-
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                return console.log(error);
+                console.log(error);
+                res.json(error);
+            } else {
+                console.log('Envelope: %s', info.envelope);
+                console.log('MessageId: %s', info.messageId);
+                res.status(200).json({"msg": "Message has been sent"});
             }
-            console.log('Message sent: %s', info.messageId);
+            return res.end();
         });
-    })
 });
 
 const PORT = process.env.PORT || 3001;
