@@ -38,24 +38,28 @@ app.post('/email/sendform', (req, res, next) => {
         </div>
         <h3>Services required<h3>
         <ul>
-            <li>CAT5 cable: ${req.body.c1}</li>
-            <li>CAT6 cable: ${req.body.c2}</li>
-            <li>RG-11 homeruns: ${req.body.c3}</li>
-            <li>3" sleeves: ${req.body.c4}</li>
-            <li>1.25" smoothwall innerduct: ${req.body.c5}</li>
-            <li>PVC 4" pipes: ${req.body.c6}</li>
-            <li>phone outlets: ${req.body.c7}</li>
-            <li>comms enclosure: ${req.body.c8}</li>
-            <li>Magnetic locks: ${req.body.c9}</li>
-            <li>Electric Strikes: ${req.body.c10}</li>
-            <li>Request to Exit: ${req.body.c11}</li>
-            <li>Proximity readers: ${req.body.c12}</li>
-            <li>indoor Dome Cameras: ${req.body.c13}</li>
-            <li>Outdoor Dome Cameras: ${req.body.c14}</li>
-            <li>License Plate Cameras: ${req.body.c15}</li>
-            <li>Elevator Cameras: ${req.body.c16}</li>
-            <li>Garage panic box: ${req.body.c17}</li>
-            <li>Conduit: ${req.body.c18}</li>
+        <li>CAT5/6... cable: ${req.body.c0}</li>
+        <li>RG-11 homeruns: ${req.body.c1}</li>
+        <li>voice lines: ${req.body.c2}</li>
+        <li>3" sleeves: ${req.body.c3}</li>
+        <li>1.25" smoothwall innerduct: ${req.body.c4}</li>
+        <li>PVC 4" pipes: ${req.body.c5}</li>
+
+        <li>Magnetic locks: ${req.body.c8}</li>
+        <li>Electric Strikes: ${req.body.c9}</li>
+        <li>Request to Exit: ${req.body.c10}</li>
+        <li>Proximity readers: ${req.body.c11}</li>
+        <li>Panic bars: ${req.body.c12}</li>
+
+        <li>indoor Dome Cameras: ${req.body.c13}</li>
+        <li>Outdoor Dome Cameras: ${req.body.c14}</li>
+        <li>License Plate Cameras: ${req.body.c15}</li>
+        <li>Elevator Cameras: ${req.body.c16}</li>
+        <li>Garage panic box: ${req.body.c17}</li>
+        <li>Conduit: ${req.body.c18}</li>
+
+        <li>phone outlets: ${req.body.c6}</li>
+        <li>comms enclosure: ${req.body.c7}</li>
         </ul>
         <h3>Details<h3>
         <p>
@@ -63,7 +67,7 @@ app.post('/email/sendform', (req, res, next) => {
         </p>
         `
 
-    let transporter = nodemailer.createTransport({
+   let transporter = nodemailer.createTransport({
         host: process.env.HOST,
         port: 587,
         secure: false, // true for 465, false for other ports
@@ -79,7 +83,7 @@ app.post('/email/sendform', (req, res, next) => {
         subject: 'Construction inquiry', // Subject line
         text: req.body.message, // plain text body
         html: htmlEmail // html body
-    }
+    } 
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
