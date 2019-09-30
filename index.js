@@ -1,11 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const cors = require('cors');
 const app = express();
 
 // NOTE: Express middleware to operate on incoming req to parse the body, making available before sending it off to the req handler
 app.use(bodyParser.json());
+
+app.use(cors());
 
 // TODO - why did I have this line for? cant remember
 //app.unsubscribe(bodyParser.urlencoded({ extended: false }));

@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const cors = require('cors');
+// const cors = require('cors');
 
 module.exports = (app) => {
     console.log('made it here');
@@ -35,7 +35,9 @@ module.exports = (app) => {
         return str;
     }
 
-    app.post('/email/sendform', cors(), (req, res, next) => {
+    // TODO - find out why this version did not work with cors
+    // cors(),
+    app.post('/email/sendform', (req, res, next) => {
         const services = generateTextboxFields`
             CAT5/6 cable${req.body.c0}
             RG-11 homeruns${req.body.c1}
