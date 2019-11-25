@@ -2,93 +2,157 @@ const nodemailer = require('nodemailer');
 // const cors = require('cors');
 
 module.exports = (app) => {
-    console.log('made it here');
-    function generateTextboxFields(strings, ...values) {
-        let str = '<div style="display: table-cell;">';
-        let counter = 1;
+    // function generateTextboxFields(strings, ...values) {
+    //     let str = '<div style="display: table-cell;">';
+    //     let counter = 1;
 
-        strings.forEach((string, i) => {
-            if (counter == 6) {
-                str = str + `</div><div style="display: table-cell;">`;
-                counter = 1;
-            }
+    //     strings.forEach((string, i) => {
+    //         if (counter == 6) {
+    //             str = str + `</div><div style="display: table-cell;">`;
+    //             counter = 1;
+    //         }
 
-            if (values[i] == true) {
-                str =
-                    str +
-                    `<input type="checkbox" checked disabled />` +
-                    string +
-                    `<br/>`;
-            } else {
-                str =
-                    str +
-                    `<input type="checkbox" disabled />` +
-                    string +
-                    `<br/>`;
-            }
-            counter++;
-        });
+    //         if (values[i] == true) {
+    //             str = str + `<input type="checkbox" checked disabled />` + string + `<br/>`;
+    //         } else {
+    //             str = str + `<input type="checkbox" disabled />` + string + `<br/>`;
+    //         }
+    //         counter++;
+    //     });
 
-        str = str + `</div>`;
-        console.log(str);
+    //     str = str + `</div>`;
+    //     console.log(str);
 
-        return str;
-    }
+    //     return str;
+    // }
 
     // TODO - find out why this version did not work with cors
     // cors(),
     app.post('/email/sendform', (req, res, next) => {
-        const services = generateTextboxFields`
-            CAT5/6 cable${req.body.c0}
-            RG-11 homeruns${req.body.c1}
-            voice lines${req.body.c2}
-            3" sleeves${req.body.c3}
-            1.25" smoothwall innerduct${req.body.c4}
-            PVC 4" pipes${req.body.c5}
-            Magnetic locks${req.body.c8}
-            Electric Strikes${req.body.c9}
-            Request to Exit${req.body.c10}
-            Proximity readers${req.body.c11}
-            Panic bars${req.body.c12}
-            indoor Dome Cameras${req.body.c13}
-            Outdoor Dome Cameras${req.body.c14}
-            License Plate Cameras${req.body.c15}
-            Elevator Cameras${req.body.c16}
-            Garage panic box${req.body.c17}
-            Conduit${req.body.c18}
-            phone outlets${req.body.c6}
-            comms enclosure${req.body.c7}
-        `;
-
         const htmlEmail = ` 
-            <div>
-                <h2>Construction Contact Request</h2>
-                <div>
-                    <div><label>Name:</label> ${req.body.firstName} ${req.body.lastName}</div> 
-                    <div><label>Email:</label> ${req.body.email}</div> 
-                    <div><label>Phone:</label> ${req.body.phone}</div> 
-                </div>
-                
-                <h2>Projected Start Date and Property Details</h2>
-                <div style="display: table-cell;">
-                    <div><label style="padding-right: 10px;">Start Date:</label>${req.body.projectedDate}</div> 
-                    <div><label style="padding-right: 10px;">Building Type:</label> ${req.body.buildingTypes}</div>
-                    <div><label style="padding-right: 10px;">Number of Units:</label> ${req.body.numberOfUnits}</div>
-                    <div><label style="padding-right: 10px;">Number of Floors:</label>${req.body.numberOfFloors}</div>
-                    <div><label style="padding-right: 10px;">Site-Building Phasing:</label> ${req.body.numberOfFloors}</div>
-                    <div><label style="padding-right: 10px;">Number of IDF's:</label>${req.body.numberOfFloors}</div>
-                </div>
-                
-                <h2>Services required</h2>
-                <div style="display: table-row; width: 100%; border-spacing: 20px 0;">
-                    ${services}
-                </div>
-    
-                <h3>Additional Description</h3>
-                <div>
-                    <p>${req.body.description}</p>
-                </div>
-            </div>
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                <title>Demystifying Email Design</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            </head>
+            <body style="margin:0; padding:0;">
+                <table align='center' cellpadding='0' cellspacing='0' width='100%' style='border-collapse: collapse;'>
+                    <tr>
+                        <td align='center' bgcolor='#212529' style='padding: 40px 0 20px 0;'>
+                            <h3 style='color: #f05f40; font-family: Arial, sans-serif; font-size: 24px; line-height: 20px;'>STREAMLINE WIRING</h3>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td bgcolor='#ffffff' style='padding: 30px 20px 30px 20px;' width='100%'>
+                            <table cellpadding='0' cellspacing='0' width='100%'>
+                                <tr>
+                                    <td align='center'>
+                                        <h2>Contact Information</h2>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td bgcolor='#e0e0eb'>
+                                        <table width='100%'>
+                                            <tr>
+                                                <td width='50' valign='top'>
+                                                    Name:
+                                                </td>
+                                                <td valign='top'>${req.body.name}</td>
+                                                <td style='font-size: 0; line-height: 0;' width='20'>
+                                                    &nbsp;
+                                                </td>
+                                                <td width='50' valign='top'>
+                                                    Phone:
+                                                </td>
+                                                <td valign='top'>${req.body.phone}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td bgcolor='#e0e0eb'>
+                                        <table width='100%'>
+                                            <tr>
+                                                <td width='50' valign='top'>
+                                                    Email:
+                                                </td>
+                                                <td valign='top'>${req.body.email}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td align='center'>
+                                        <h2>Property Details</h2>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td bgcolor='#e0e0eb'>
+                                        <table width='100%'>
+                                            <tr>
+                                                <td width='150' valign='top'>
+                                                    Bidding Deadline:
+                                                </td>
+                                                <td valign='top'>${req.body.biddingDeadline}</td>
+                                                <td style='font-size: 0; line-height: 0;' width='20'>
+                                                    &nbsp;
+                                                </td>
+                                                <td width='150' valign='top'>
+                                                    Number of Units:
+                                                </td>
+                                                <td valign='top'>${req.body.numberOfUnits}</td>
+                                            </tr>
+                                            <tr>
+                                                <td width='150' valign='top'>
+                                                    Site-Building Phase(s):
+                                                </td>
+                                                <td valign='top'>${req.body.sitePhases}</td>
+                                                <td style='font-size: 0; line-height: 0;' width='20'>
+                                                    &nbsp;
+                                                </td>
+                                                <td width='150' valign='top'>
+                                                    Number of IDFs:
+                                                </td>
+                                                <td valign='top'>${req.body.numberOfIDFs}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td align='center'>
+                                        <h2>Message</h2>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td bgcolor='#e0e0eb'>
+                                        <p valign='top' style='white-space: pre-wrap'>
+                                            ${req.body.message}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align='center' bgcolor='#212529' style='padding: 5px 0 5px 0;'>
+                            <p style='color: #f05f40; font-family: Arial, sans-serif; font-size: 12px; line-height: 20px;'> &copy; ${new Date().getFullYear()} Copyright: streamlinewiring.com</p>
+                        </td>
+                    </tr>
+                </table>
+            </body>
+        </html> 
         `;
 
         let transporter = nodemailer.createTransport({
@@ -105,7 +169,7 @@ module.exports = (app) => {
             from: process.env.USER, // sender address
             to: process.env.USER, // list of receivers
             bcc: process.env.USER2,
-            subject: 'Construction inquiry', // Subject line
+            subject: 'STREAMLINE WIRING', // Subject line
             text: req.body.message, // plain text body
             html: htmlEmail // html body
         };
