@@ -59,16 +59,18 @@ module.exports = (app) => {
                                         <table width='100%'>
                                             <tr>
                                                 <td width='50' valign='top'>
-                                                    Name:
+                                                    <label style='font-weight: bold'>Name:</label>
+                                                    <br>
+                                                    ${req.body.name}
                                                 </td>
-                                                <td valign='top'>${req.body.name}</td>
                                                 <td style='font-size: 0; line-height: 0;' width='20'>
                                                     &nbsp;
                                                 </td>
                                                 <td width='50' valign='top'>
-                                                    Phone:
+                                                    <label style='font-weight: bold'>Phone:</label>
+                                                    <br>
+                                                    ${req.body.phone}
                                                 </td>
-                                                <td valign='top'>${req.body.phone}</td>
                                             </tr>
                                         </table>
                                     </td>
@@ -79,66 +81,88 @@ module.exports = (app) => {
                                         <table width='100%'>
                                             <tr>
                                                 <td width='50' valign='top'>
-                                                    Email:
+                                                    <label style='font-weight: bold'>Email:</label>
+                                                    <br>
+                                                    ${req.body.email}
                                                 </td>
-                                                <td valign='top'>${req.body.email}</td>
                                             </tr>
                                         </table>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td>&nbsp;</td>
                                 </tr>
+
                                 <tr>
                                     <td align='center'>
                                         <h2>Property Details</h2>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td bgcolor='#e0e0eb'>
                                         <table width='100%'>
                                             <tr>
                                                 <td width='150' valign='top'>
-                                                    Bidding Deadline:
+                                                    <label style='font-weight: bold'>Bidding Deadline:</label>
+                                                    <br>
+                                                    ${req.body.biddingDeadline}
                                                 </td>
-                                                <td valign='top'>${req.body.biddingDeadline}</td>
                                                 <td style='font-size: 0; line-height: 0;' width='20'>
                                                     &nbsp;
                                                 </td>
                                                 <td width='150' valign='top'>
-                                                    Number of Units:
+                                                    <label style='font-weight: bold'>Number of Units:</label>
+                                                    <br>
+                                                    ${req.body.numberOfUnits}
                                                 </td>
-                                                <td valign='top'>${req.body.numberOfUnits}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <br>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td width='150' valign='top'>
-                                                    Site-Building Phase(s):
+                                                    <label style='font-weight: bold'>Site-Building Phase(s):</label>
+                                                    <br>
+                                                    ${req.body.sitePhases}
                                                 </td>
-                                                <td valign='top'>${req.body.sitePhases}</td>
                                                 <td style='font-size: 0; line-height: 0;' width='20'>
                                                     &nbsp;
                                                 </td>
                                                 <td width='150' valign='top'>
-                                                    Number of IDFs:
+                                                    <label style='font-weight: bold'>Number of IDFs:</label>
+                                                    <br>
+                                                    ${req.body.numberOfIDFs}
                                                 </td>
-                                                <td valign='top'>${req.body.numberOfIDFs}</td>
                                             </tr>
                                         </table>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td>&nbsp;</td>
                                 </tr>
+
                                 <tr>
                                     <td align='center'>
                                         <h2>Message</h2>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td bgcolor='#e0e0eb'>
-                                        <p valign='top' style='white-space: pre-wrap'>
-                                            ${req.body.message}
-                                        </p>
+                                        <table>
+                                            <tr>
+                                                <td width='300'>
+                                                    <p style='white-space: pre-line'>
+                                                        ${req.body.message}
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </td>
                                 </tr>
                             </table>
