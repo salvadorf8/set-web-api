@@ -5,7 +5,7 @@ const contactMeTemplate = require('../services/emailTemplates/contactMeTemplate'
 module.exports = (app) => {
     // TODO - find out why adding a middleware (cors()) as a parameter in app.post did not work
     app.post('/email/sendform', (req, res, next) => {
-        const htmlEmail = new contactMeTemplate(req);
+        const htmlEmail = contactMeTemplate(req);
 
         let transporter = nodemailer.createTransport({
             host: process.env.HOST,
